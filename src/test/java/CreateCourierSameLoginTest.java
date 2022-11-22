@@ -1,21 +1,21 @@
-import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import static org.hamcrest.Matchers.equalTo;
 
-public class CreateCourierSameTest {
+public class CreateCourierSameLoginTest {
     private CourierClient courierClient;
     private Courier courier;
+    private Courier sameLoginCourier;
     private int id;
+
 
     @Before
     public void setUp(){
         courierClient = new CourierClient();
         courier = new Courier("Asas", "12345678", "Asassin");
-
+        sameLoginCourier = new Courier("Asas", "12345", "Asas");
     }
 
     @After
@@ -31,8 +31,14 @@ public class CreateCourierSameTest {
 
     @Test
     public void sameCourierTest(){
-         courierClient.createSameCourier(courier)
+        courierClient.createCourier(courier);
+
+        courierClient.createCourier(sameLoginCourier)
                 .assertThat().body("message", equalTo("Этот логин уже используется. Попробуйте другой.")).and().statusCode(409);
 
+
     }
+
+
+
 }

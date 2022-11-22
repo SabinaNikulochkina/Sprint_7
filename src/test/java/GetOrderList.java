@@ -1,15 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-import java.util.Collections;
-import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class getOrderList {
+public class GetOrderList {
     private OrderClient orderClient;
 
     @Before

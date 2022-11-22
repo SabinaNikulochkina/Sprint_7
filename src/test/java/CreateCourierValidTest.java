@@ -23,6 +23,10 @@ public class CreateCourierValidTest {
     public void cleanUp(){
 
         courierClient.deleteCourier(id);
+
+        Credentials credentials = Credentials.from(courier);
+        id = courierClient.loginCourier(credentials)
+                .extract().path("id");
     }
 
     @Test
@@ -30,10 +34,6 @@ public class CreateCourierValidTest {
 
         courierClient.createCourier(courier)
                 .assertThat().body("ok", equalTo(true)).and().statusCode(201);
-
-        Credentials credentials = Credentials.from(courier);
-        id = courierClient.loginCourier(credentials)
-                .extract().path("id");
 
 
         }
